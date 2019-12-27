@@ -1,0 +1,9 @@
+<% if @stock %>
+  <div class="well results-block">
+    <strong>Symbol: <%= @stock.ticker %></strong>
+    <br>
+    <strong>Name: <%= @stock.name %></strong>
+    <br>
+    <strong>Price: <%= @stock.last_price %></strong>
+  </div>
+<% end %>
