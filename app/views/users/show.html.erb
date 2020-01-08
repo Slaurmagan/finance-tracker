@@ -1,0 +1,40 @@
+<h2>User Details</h2>
+
+<dl class="dl-horizontal">
+  <dt><strong>Full name:</strong></dt>
+  <dd><%= @user.full_name %></dd>
+  <dt><strong>Email: </strong></dt>
+  <dd><%= @user.email %></dd>
+
+</dl>
+
+<% if @user_stocks.count > 0 %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Symbol</th>
+      <th>Current price</th>
+      <% if @user.id == current_user.id %>
+        <th>Actions</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user_stocks.each do |user_stock| %>
+      <tr>
+        <td><%= user_stock.name%></td>
+        <td><%= user_stock.ticker %></td>
+        <td><%= user_stock.last_price %></td>
+        <% if @user.id == current_user.id %>
+          <td><%= link_to "Stop tracking",user_stock_path(user_stock),method: :delete,data: {confirm: "Are you sure"},class:"btn btn-xs btn-danger" %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+<% else %>
+  <div class="alert-danger alert">
+    This user is not tracking any stocks
+  </div>
+<% end %>
+</table>
