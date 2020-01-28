@@ -11,7 +11,7 @@ class Stock < ApplicationRecord
   def self.new_from_lookup(ticker_symbol)
     
     begin
-      # client = IEX::Api::Client.new(publishable_token: 'pk_a3dc6a9a44f94300b04e1a85566fb8d2')
+
       looked_up_stock = StockQuote::Stock.quote(ticker_symbol)
       new(name: looked_up_stock.company_name,
           ticker: looked_up_stock.symbol, last_price: looked_up_stock.latest_price)
